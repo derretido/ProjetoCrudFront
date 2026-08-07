@@ -1,6 +1,6 @@
 // URL DA API
 
-const API = "https://projetocrud-f3n6.onrender.com";
+const API = "https://projetocrud-f3n6.onrender.com/api";
 
 
 
