@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="layout">
+        <h1>Cadastro de Convênio </h1>
+    <form>
+        <div class="menu">
+            <a href="MenuClinica.html" class="btn_voltar_menu">Voltar para o menu</a>
+        </div>
+
+        <div>
+            <label>Convênio:</label>
+            <input type="text" id="Convenio">
+        </div>
+        <br>
+        <div>
+            <select id="ConvenioStatus">
+                <option value="">Selecione</option>
+            </select>
+        </div>
+        <br>
+        <button id="btn_cadastrar_convenio" type="button">Cadastrar</button>
+        <p id="Mensagem_Convenio"></p>
+    </form>
+    <script src="service.js"></script>
+</body>
+</html>

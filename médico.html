@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinica Médica</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="layout">
+    <h1 id="Cadastro"> Cadastro do Médico </h1>
+    <form>
+        <div class="menu">
+            <a href="MenuClinica.html" class="btn_voltar_menu">Voltar para o menu</a>
+        </div>
+        <br>
+        <div>
+            <div class="menu">
+            <a href="diasDisponiveis.html" class="btn_voltar_menu">Cadastrar Dias Disponíveis</a>
+            </div>
+        </div>
+        <br>
+        <div>
+            <div class="menu">
+                <a href="medicosDispo.html" class="btn_voltar_menu">Ver Médicos disponíveis</a>
+            </div>
+        </div>
+        <br>
+        <div>
+            <label>CRM:</label>
+            <input type="text" id="CRM">
+        </div>
+        <br>
+        <div>
+            <label>CPF:</label>
+            <input type="text" id="CPF">
+        </div>
+        <br>
+        <div>
+            <label>Nome:</label>
+            <input type="text" id="Nome">
+        </div>
+        <br>
+        <div>
+            <label>Telefone:</label>
+            <input type="text" id="Telefone">
+        </div>
+        <br>
+        <div>
+            <label>Endeço:</label>
+            <input type="text" id="Endereço">
+        </div>
+        <br>
+        <div>
+            <label>CEP:</label>
+            <input type="text" id="CEP">
+        </div>
+        <br>
+        <div>
+            <label>Cidade:</label>
+            <input type="text" id="Cidade">
+        </div>
+        <br>
+        <div>
+            <label>Bairro:</label>
+            <input type="text" id="Bairro">
+        </div>
+        <br>
+        <div>
+            <label>Numero:</label>
+            <input type="text" id="Numero">
+        </div>
+        <br>
+        <div>
+            <label>Complemento:</label>
+            <input type="text" id="Complemento">
+        </div>
+        <br>
+        <div>
+            <label>UF:</label>
+            <input type="text" id="UF">
+        </div>
+        <br>
+        <div>
+            <label>Sexo:</label>
+            <select id="Sexo">
+                <option value="">Selecione</option>
+                <option value="M">Masculino</option>
+                <option value="F">Feminino</option>
+            </select>
+        </div>
+        <br>
+        <div>
+            <label>Especialidade:</label>
+            <select id="Especialidade">
+                <option value="">Selecione uma especialidade</option>
+            </select>
+        </div>
+        <br>
+        <div>
+            <label>Status:</label>
+            <select id="Status">
+                <option value="">Selecione um status</option>
+            </select>
+        </div>
+        <br>
+        <button id="btn_cadastrarMedico" type="button">Cadastrar</button>
+        <p id="Mensagem"></p>
+    </form>
+    <script src="service.js"></script>
+</body>
+</html>

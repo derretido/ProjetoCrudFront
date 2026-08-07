@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Médicos Disponíveis</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="layout">
+
+    <h1>Médicos Disponíveis</h1>
+    
+        <div class="menu">
+            <a href="MenuClinica.html" class="btn_voltar_menu">Voltar para o menu</a>
+        </div>
+
+    <div class="container">
+
+        <table class="tabela">
+
+            <thead>
+                <tr>
+                    <th>CRM</th>
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                    <th>CEP</th>
+                    <th>Especialidade</th>
+                    <th>Sexo</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody id="tabelaMedicos">
+
+                
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <button class="btn-editar">
+                            Editar
+                        </button>
+                        <button class="btn-excluir" data-id="${md.medicoId}">
+                            Excluir
+                        </button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+    <script src="service.js"></script>
+
+</body>
+
+</html>
