@@ -101,8 +101,8 @@ async function carregarMedicos() {
     const medicos = await resposta.json();
     medicos.forEach(medico => {
         const option = document.createElement("option");
-        option.value = medico.medicoId;
-        option.textContent = `${medico.medicoId} - ${medico.nome}`;
+        option.value = medico.ID_MED_CRM;
+        option.textContent = `${medico.ID_MED_CRM} - ${medico.meD_NOME_COMPLETO}`;
         select.appendChild(option);
     });
 }
@@ -123,7 +123,7 @@ function obterDadosPaciente() {
         PAC_NUMERO: document.getElementById("Numero").value,
         PAC_COMPLEMENTO: document.getElementById("Complemento").value,
         PAC_UF: document.getElementById("UF").value,
-        iD_PAC_TAB_CONVENIO: document.getElementById("Convenio").value
+        ID_PAC_TAB_CONVENIO: document.getElementById("Convenio").value
     };
 }
 
