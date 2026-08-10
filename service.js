@@ -101,8 +101,8 @@ async function carregarMedicos() {
     const medicos = await resposta.json();
     medicos.forEach(medico => {
         const option = document.createElement("option");
-        option.value = medico.iD_MED_CRM;
-        option.textContent = `${medico.iD_MED_CRM}`;
+        option.value = medico.medicoId;
+        option.textContent = `${medico.medicoId} - ${medico.nome}`;
         select.appendChild(option);
     });
 }
