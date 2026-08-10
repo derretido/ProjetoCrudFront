@@ -391,8 +391,9 @@ async function carregarAgendamentos() {
     tabela.innerHTML = "";
     agendamentos.forEach(ag => {
         const linha = document.createElement("tr");
+        linha.dataset.id = ag.agendamentoId;
         const dataFormatada = new Date(ag.data).toLocaleDateString("pt-BR");
-        const horarioFormatado = ag.horario?.substring(0, 5); 
+        const horarioFormatado = ag.horario?.substring(0, 5);
         linha.innerHTML = `
             <td>${dataFormatada}</td>
             <td>${horarioFormatado}</td>
@@ -407,16 +408,82 @@ async function carregarAgendamentos() {
         `;
         tabela.appendChild(linha);
     });
-    document.addEventListener("click", async (evento) => {
+}
+
+// Troca as células de Data, Horário e Status da linha por campos editáveis
+function editarAgendamento(linha) {
+    const dataAtual = linha.children[0].textContent;
+    const horarioAtual = linha.children[1].textContent;
+    const [dia, mes, ano] = dataAtual.split("/");
+    const dataISO = `${ano}-${mes}-${dia}`;
+
+    linha.children[0].innerHTML = `<input type="date" class="edit-data" value="${dataISO}">`;
+    linha.children[1].innerHTML = `<input type="time" class="edit-horario" value="${horarioAtual}">`;
+    linha.children[5].innerHTML = `
+        <select class="edit-status">
+            <option value="">Status</option>
+            <option value="1">Confirmado</option>
+            <option value="2">Não Compareceu</option>
+            <option value="3">Pendente</option>
+        </select>
+    `;
+    linha.children[6].innerHTML = `
+        <button class="btn-salvar">Salvar</button>
+        <button class="btn-cancelar">Cancelar</button>
+    `;
+}
+
+// Envia a Data, o Horário e o Status editados para a API
+async function salvarEdicaoAgendamento(linha) {
+    const id = linha.dataset.id;
+    const novaData = linha.querySelector(".edit-data").value;
+    const novoHorario = linha.querySelector(".edit-horario").value;
+    const novoStatus = linha.querySelector(".edit-status").value;
+
+    if (!novaData || !novoHorario || !novoStatus) {
+        alert("Preencha a data, o horário e o status antes de salvar.");
+        return;
+    }
+
+    const dados = {
+        MED_AGENDAMENTO_DATA: novaData,
+        MED_AGENDAMENTO_HORARIO: `${novoHorario}:00`,
+        ID_MED_AGENDAMENTO_STATUS: parseInt(novoStatus)
+    };
+
+    try {
+        await atualizar(`${API}/Agendamento/${id}`, dados);
+    } catch (erro) {
+        console.error("Erro ao editar agendamento:", erro);
+        alert("Erro ao editar agendamento.");
+    }
+    carregarAgendamentos();
+}
+
+document.addEventListener("click", async (evento) => {
+    const linha = evento.target.closest("tr");
+    if (!linha || !linha.closest("#tabelaAgendamentos")) return;
+
+    if (evento.target.classList.contains("btn-editar")) {
+        editarAgendamento(linha);
+    }
+
+    if (evento.target.classList.contains("btn-cancelar")) {
+        carregarAgendamentos();
+    }
+
+    if (evento.target.classList.contains("btn-salvar")) {
+        await salvarEdicaoAgendamento(linha);
+    }
+
     if (evento.target.classList.contains("btn-excluir")) {
         const id = evento.target.dataset.id;
         const confirmou = confirm("Tem certeza que deseja excluir este agendamento?");
         if (!confirmou) return;
         await excluir(`${API}/Agendamento/${id}`);
-        carregarAgendamentos(); 
-        }
-    });
-}
+        carregarAgendamentos();
+    }
+});
 
 
 
