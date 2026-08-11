@@ -283,13 +283,16 @@ function obterDadosAgendaMedica() {
         ID_MED_CRM: parseInt(document.getElementById("CRM").value),
         ID_MED_TAB_AGENDA_PERIODO: periodoValue,
         MED_AGENDA_DIA_SEMANA: document.getElementById("DiaSemana").value,
-        MED_AGENDA_HORA_INICIAL: document.getElementById("Horario_inicial").value,
-        MED_AGENDA_HORA_FINAL: document.getElementById("Horario_final").value,
+        MED_AGENDA_HORA_INICIAL: `${document.getElementById("Horario_inicial").value}:00`,
+        MED_AGENDA_HORA_FINAL: `${document.getElementById("Horario_final").value}:00`,
         MED_AGENDA_QTDE_MAXIMA: document.getElementById("Qtde_maxima").value,
         MED_AGENDA_TEMPO_CONSULTA: tempoConsultaFormatado,
     };
 }
-async function cadastrarAgendaMedica() {
+
+
+
+async function cadastrarDiasDisponiveis() {
     const dados = obterDadosAgendaMedica();
     console.log(dados);
     try {
@@ -301,20 +304,20 @@ async function cadastrarAgendaMedica() {
             body: JSON.stringify(dados)
         });
         if (!resposta.ok)
-            throw new Error("Erro ao cadastrar agenda médica.");
-        const mensagem = document.getElementById("Mensagem_AgendaMedica");
-        mensagem.innerText = "Agenda médica cadastrada com sucesso!";
+            throw new Error("Erro ao cadastrar os dias disponíveis do médico.");
+        const mensagem = document.getElementById("Mensagem_DiasDispo");
+        mensagem.innerText = "Dias disponíveis cadastrados com sucesso!";
         mensagem.style.color = "green";
     } catch (erro) {
         console.error(erro);
-        const mensagem = document.getElementById("Mensagem_AgendaMedica");
-        mensagem.innerText = "Erro ao cadastrar agenda médica.";
+        const mensagem = document.getElementById("Mensagem_DiasDispo");
+        mensagem.innerText = "Erro ao cadastrar os dias disponíveis do médico.";
         mensagem.style.color = "red";
     }
 }
 const btn_cadastrarDiasDisponiveis = document.getElementById("btn_cadastrarDiasDisponiveis");
 if (btn_cadastrarDiasDisponiveis) {
-    btn_cadastrarDiasDisponiveis.addEventListener("click", cadastrarAgendaMedica);
+    btn_cadastrarDiasDisponiveis.addEventListener("click", cadastrarDiasDisponiveis);
 }
 
 
