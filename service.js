@@ -101,11 +101,11 @@ async function carregarMedicos() {
     const medicos = await resposta.json();
     medicos.forEach(medico => {
         const option = document.createElement("option");
-        option.textContent = `${medico.ID_MED_CRM} - ${medico.meD_NOME_COMPLETO}`;
+        option.value = medico.medicoId;
+        option.textContent = `${medico.medicoId} `;
         select.appendChild(option);
     });
 }
-
 
 // CADASTRO PACIENTE
 function obterDadosPaciente() {
@@ -344,10 +344,10 @@ function obterDadosAgendamentos() {
 
     return {
         ID_MED_CRM: parseInt(document.getElementById("CRM").value),
-        ID_PAC_RG_CIN: document.getElementById("RG/CIN").value,
+        ID_PAC_RG_CIN: parseInt(document.getElementById("RG/CIN").value),
         ID_MED_TAB_AGENDA_PERIODO: periodoValue,
         ID_MED_AGENDAMENTO_STATUS: parseInt(document.getElementById("StatusAgenda").value),
-        MED_AGENDAMENTO_HORARIO: document.getElementById("Horario").value,
+        MED_AGENDAMENTO_HORARIO: `${document.getElementById("Horario").value}:00`,
         MED_AGENDAMENTO_DATA: document.getElementById("Data").value,
     };
 }
