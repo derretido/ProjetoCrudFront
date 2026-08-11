@@ -344,7 +344,7 @@ function obterDadosAgendamentos() {
     }
 
     return {
-        iD_MED_CRM: document.getElementById("CRM").value,
+        ID_MED_CRM: document.getElementById("CRM").value,
         ID_PAC_RG_CIN: document.getElementById("RG/CIN").value,
         ID_MED_TAB_AGENDA_PERIODO: periodoValue,
         ID_MED_AGENDAMENTO_STATUS: parseInt(document.getElementById("StatusAgenda").value),
