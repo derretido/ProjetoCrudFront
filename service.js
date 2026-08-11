@@ -101,7 +101,6 @@ async function carregarMedicos() {
     const medicos = await resposta.json();
     medicos.forEach(medico => {
         const option = document.createElement("option");
-        option.value = medico.iD_MED_CRM;
         option.textContent = `${medico.iD_MED_CRM} - ${medico.meD_NOME_COMPLETO}`;
         select.appendChild(option);
     });
@@ -505,13 +504,13 @@ async function carregarMedicosDisponiveis() {
             <td>${md.especialidade}</td>
             <td>${md.sexo}</td>
             <td>
-                <button class="btn-editar" data-id="${md.ID_MEDICO}">Editar</button>
-                <button class="btn-excluir" data-id="${md.ID_MEDICO}">Excluir</button>
+                <button class="btn-editar" data-id="${md.medicoId}">Editar</button>
+                <button class="btn-excluir" data-id="${md.medicoId}">Excluir</button>
             </td>
         `;
         tabelamed.appendChild(linha);
     });
-    document.addEventListener("click", async (evento) => {
+document.addEventListener("click", async (evento) => {
     if (evento.target.classList.contains("btn-excluir")) {
         const id = evento.target.dataset.id;
         const confirmou = confirm("Tem certeza que deseja excluir este médico?");
@@ -521,7 +520,6 @@ async function carregarMedicosDisponiveis() {
         }
     }); 
 }
-
 
 // ATUALIZAR / EXCLUIR
 async function atualizar(url, dados) {
