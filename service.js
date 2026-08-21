@@ -2,8 +2,6 @@
 
 const API = "https://projetocrud-production.up.railway.app/api";
 
-
-
 // CARREGAR SELECT DE ESPECIALIDADES
 async function carregarEspecialidadesNoSelect() {
     const select = document.getElementById("Especialidade");
@@ -39,8 +37,6 @@ async function carregarStatusNoSelect() {
         console.error("Erro ao carregar status:", erro);
     }
 }
-
-
 
 
 // CADASTRO MÉDICO
@@ -265,7 +261,6 @@ async function carregarStatusConvenio(){
         option.textContent = stat.paC_TAB_CONVENIO_STATUS_DESCRICAO;
         select.appendChild(option);
     });
-
 }
 
 
@@ -289,8 +284,6 @@ function obterDadosAgendaMedica() {
         MED_AGENDA_TEMPO_CONSULTA: tempoConsultaFormatado,
     };
 }
-
-
 
 async function cadastrarDiasDisponiveis() {
     const dados = obterDadosAgendaMedica();
@@ -320,7 +313,6 @@ if (btn_cadastrarDiasDisponiveis) {
     btn_cadastrarDiasDisponiveis.addEventListener("click", cadastrarDiasDisponiveis);
 }
 
-
 //Agenda medica - Carregando Periodos
 async function AgendaPeriodo(){
     const select = document.getElementById("Periodo");
@@ -335,7 +327,6 @@ async function AgendaPeriodo(){
     });
 }
 
-
 // Cadastro de Agendamento
 function obterDadosAgendamentos() {
     const periodoEl = document.getElementById("Periodo");
@@ -344,7 +335,6 @@ function obterDadosAgendamentos() {
     if (!periodoEl.value || isNaN(periodoValue)) {
         throw new Error("Selecione um período válido.");
     }
-
     return {
         ID_MED_CRM: parseInt(document.getElementById("CRM").value),
         ID_PAC_RG_CIN: parseInt(document.getElementById("RG/CIN").value),
@@ -381,7 +371,6 @@ const btn_cadastrarAgendamentos = document.getElementById("btn_cadastrarAgendame
 if (btn_cadastrarAgendamentos) {
     btn_cadastrarAgendamentos.addEventListener("click", cadastrarAgendamentos);
 }
-
 
 //Consulta dos Agendamentos
 async function carregarAgendamentos() {

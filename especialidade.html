@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,20 +7,24 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="layout">
+    <header>
         <h1>Cadastro de Especialidade Médica </h1>
-    <form>
-        <div class="menu">
-            <a href="MenuClinica.html" class="btn_voltar_menu">Voltar para o menu</a>
+    </header>
+    <main class="main">
+        <div class="formulario">
+            <p>
+                <label>Especialidade:</label>
+                <input type="text" id="Especialidade" placeholder="Digite a especialidade">
+            </p>
         </div>
-
-        <div>
-            <label>Especialidade:</label>
-            <input type="text" id="Especialidade">
-        </div>
-        <br>
-        <button id="btn_cadastrar_especialidade" type="button">Cadastrar</button>
-        <p id="Mensagem_Especialidade"></p>
-    </form>
+        <p>
+            <button id="btn_cadastrar_especialidade" type="button">Cadastrar</button>
+            <p id="Mensagem_Especialidade"></p>
+        </p>
+    </main>
+    <footer>
+        <a href="MenuClinica.html" class="btn_voltar_menu">Voltar para o menu</a>
+    </footer>
     <script src="service.js"></script>
 </body>
 </html>

@@ -1,63 +1,53 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consulta dos Agendamentos</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body class="layout">
-
-    <h1>Agenda de Consultas</h1>
-    
-        <div class="menu">
-            <a href="MenuClinica.html" class="btn_voltar_menu">Voltar para o menu</a>
+    <header>
+        <h1>Agenda de Consultas</h1>
+    </header>
+    <main class="main">
+        <div class="container">
+            <table class="tabela">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Horário</th>
+                        <th>Paciente</th>
+                        <th>Médico</th>
+                        <th>Especialidade</th>
+                        <th></th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaAgendamentos">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <button class="btn-editar">
+                                Editar
+                            </button>
+                            <button class="btn-excluir" data-id="${ag.agendamentoId}">
+                                Excluir
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-
-    <div class="container">
-
-        <table class="tabela">
-
-            <thead>
-                <tr>
-                    <th>Data</th>
-                    <th>Horário</th>
-                    <th>Paciente</th>
-                    <th>Médico</th>
-                    <th>Especialidade</th>
-                    <th></th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-
-            <tbody id="tabelaAgendamentos">
-
-                
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <button class="btn-editar">
-                            Editar
-                        </button>
-                        <button class="btn-excluir" data-id="${ag.agendamentoId}">
-                            Excluir
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-    </div>
+    </main>
+    <footer>
+        <a href="MenuClinica.html" class="btn_voltar_menu">Voltar para o menu</a>
+    </footer>
     <script src="service.js"></script>
-
 </body>
-
 </html>

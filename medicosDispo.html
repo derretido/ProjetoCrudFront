@@ -10,52 +10,44 @@
 </head>
 
 <body class="layout">
-
-    <h1>Médicos Disponíveis</h1>
-    
-        <div class="menu">
-            <a href="MenuClinica.html" class="btn_voltar_menu">Voltar para o menu</a>
+    <header>
+        <h1>Médicos Disponíveis</h1>
+    </header>
+    <main class="main">
+        <div class="container">
+            <table class="tabela">
+                <thead>
+                    <tr>
+                        <th>CRM</th>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>CEP</th>
+                        <th>Especialidade</th>
+                        <th>Sexo</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaMedicos">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <button class="btn-excluir" data-id="${md.medicoId}">
+                                Excluir
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-
-    <div class="container">
-
-        <table class="tabela">
-
-            <thead>
-                <tr>
-                    <th>CRM</th>
-                    <th>Nome</th>
-                    <th>Telefone</th>
-                    <th>CEP</th>
-                    <th>Especialidade</th>
-                    <th>Sexo</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-
-            <tbody id="tabelaMedicos">
-
-                
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <button class="btn-excluir" data-id="${md.medicoId}">
-                            Excluir
-                        </button>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
-
-    </div>
+    </main>
+    <footer>
+        <a href="MenuClinica.html" class="btn_voltar_menu">Voltar para o menu</a>
+    </footer>
     <script src="service.js"></script>
-
 </body>
-
 </html>

@@ -7,104 +7,103 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="layout">
-    <h1 id="Cadastro"> Cadastro de Dias Disponíveis </h1>
-    <form>
-        <div class="menu">
-            <a href="MenuClinica.html" class="btn_voltar_menu">Voltar para cadastro médico</a>
+    <header>
+        <h1 id="Cadastro"> Cadastro de Dias Disponíveis </h1>
+    </header>
+    <main class="main">
+        <div class="formulario">
+            <div class="left">
+                <p>
+                    <label>CRM do Médico:</label>
+                    <select id="CRM">
+                        <option value="">Selecione o médico</option>
+                    </select>
+                </p>
+                <p>
+                    <label>Dia da Semana:</label>
+                    <select id="DiaSemana">
+                        <option value="">Selecione um dia da semana</option>
+                        <option value="Segunda-feira">Segunda-feira</option>
+                        <option value="Terça-feira">Terça-feira</option>
+                        <option value="Quarta-feira">Quarta-feira</option>
+                        <option value="Quinta-feira">Quinta-feira</option>
+                        <option value="Sexta-feira">Sexta-feira</option>
+                        <option value="Sábado">Sábado</option>
+                        <option value="Domingo">Domingo</option>
+                    </select>
+                </p>
+                <p>
+                    <label>Horário:</label>
+                    <select id="Horario_inicial">
+                        <option value="">Hora inicial</option>
+                        <option value="08:00">08:00</option>
+                        <option value="09:00">09:00</option>
+                        <option value="10:00">10:00</option>
+                        <option value="11:00">11:00</option>
+                        <option value="14:00">14:00</option>
+                        <option value="15:00">15:00</option>
+                        <option value="16:00">16:00</option>
+                        <option value="17:00">17:00</option>
+                    </select>
+                </p>
+                <p>
+                    <label>Horário Final:</label>
+                    <select id="Horario_final">
+                        <option value="">Hora final</option>
+                        <option value="08:00">08:00</option>
+                        <option value="09:00">09:00</option>
+                        <option value="10:00">10:00</option>
+                        <option value="11:00">11:00</option>
+                        <option value="14:00">14:00</option>
+                        <option value="15:00">15:00</option>
+                        <option value="16:00">16:00</option>
+                        <option value="17:00">17:00</option>
+                    </select>
+                </p>
+            </div>
+            <div class="right">
+                <p>
+                    <label>Período:</label>
+                    <select id="Periodo">
+                        <option value="">Selecione um período</option>
+                        <option value="1">Manhã</option>
+                        <option value="2">Tarde</option>
+                    </select>
+                </p>
+                <p>
+                    <label>Quantidade de atendimentos:</label>
+                    <select id="Qtde_maxima">
+                        <option value="">Atendimentos dia</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </p>
+                <p>
+                    <label>Tempo de Consulta:</label>
+                    <select id="Tempo_consulta">
+                        <option value="">Tempo de consulta</option>
+                        <option value="15">15 minutos</option>
+                        <option value="30">30 minutos</option>
+                        <option value="45">45 minutos</option>
+                        <option value="60">60 minutos</option>
+                    </select>
+                </p>
+            </div>
         </div>
-        <br>
-        <div>
-            <label>CRM do Médico:</label>
-            <select id="CRM">
-                <option value="">Selecione o médico</option>
-            </select>
-        </div>
-        <br>
-        <div>
-            <label>Dia da Semana:</label>
-            <select id="DiaSemana">
-                <option value="">Selecione um dia da semana</option>
-                <option value="Segunda-feira">Segunda-feira</option>
-                <option value="Terça-feira">Terça-feira</option>
-                <option value="Quarta-feira">Quarta-feira</option>
-                <option value="Quinta-feira">Quinta-feira</option>
-                <option value="Sexta-feira">Sexta-feira</option>
-                <option value="Sábado">Sábado</option>
-                <option value="Domingo">Domingo</option>
-            </select>
-        </div>
-        <br>
-        <div>
-            <label>Horário:</label>
-            <select id="Horario_inicial">
-                <option value="">Hora inicial</option>
-                <option value="08:00">08:00</option>
-                <option value="09:00">09:00</option>
-                <option value="10:00">10:00</option>
-                <option value="11:00">11:00</option>
-                <option value="14:00">14:00</option>
-                <option value="15:00">15:00</option>
-                <option value="16:00">16:00</option>
-                <option value="17:00">17:00</option>
-            </select>
-        </div>
-        <br>
-        <div>
-            <label>Horário Final:</label>
-            <select id="Horario_final">
-                <option value="">Hora final</option>
-                <option value="08:00">08:00</option>
-                <option value="09:00">09:00</option>
-                <option value="10:00">10:00</option>
-                <option value="11:00">11:00</option>
-                <option value="14:00">14:00</option>
-                <option value="15:00">15:00</option>
-                <option value="16:00">16:00</option>
-                <option value="17:00">17:00</option>
-            </select>
-        </div>
-        <br>
-        <div>
-            <label>Período:</label>
-            <select id="Periodo">
-                <option value="">Selecione um período</option>
-                <option value="1">Manhã</option>
-                <option value="2">Tarde</option>
-            </select>
-        </div>
-        <br>
-        <div>
-            <label>Quantidade de atendimentos:</label>
-            <select id="Qtde_maxima">
-                <option value="">Atendimentos dia</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-            </select>
-        </div>
-        <br>
-        <div>
-            <label>Tempo de Consulta:</label>
-            <select id="Tempo_consulta">
-                <option value="">Tempo de consulta</option>
-                <option value="15">15 minutos</option>
-                <option value="30">30 minutos</option>
-                <option value="45">45 minutos</option>
-                <option value="60">60 minutos</option>
-            </select>
-        </div>
-        <br>
         <button id="btn_cadastrarDiasDisponiveis" type="button">Cadastrar</button>
-        <br>
         <p id="Mensagem_DiasDispo"></p>
-    </form>
+    </main>
+        <footer>
+                <a href="MenuClinica.html" class="btn_voltar_menu">Voltar para o menu</a>
+        </footer>
     <script src="service.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,84 +7,80 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="layout">
-    <h1>Cadastro de Pacientes </h1>
-    <form>
-        <div class="menu">
-            <a href="MenuClinica.html" class="btn_voltar_menu">Voltar para o menu</a>
+    <header>
+        <h1>Cadastro de Pacientes </h1>
+    </header>
+    <main class="main">
+        <div class="formulario">
+            <div class="left">
+                <p>
+                    <label>RG/CIN:</label>
+                    <input type="text" id="RG/CIN" placeholder="Digite o RG ou CIN">
+                </p>
+                <p>
+                    <label>CPF:</label>
+                    <input type="text" id="CPF" placeholder="Digite o CPF">
+                </p>
+                <p>
+                    <label>Nome:</label>
+                    <input type="text" id="Nome" placeholder="Digite o nome completo">
+                </p>
+                <p>
+                    <label>Telefone:</label>
+                    <input type="text" id="Telefone" placeholder="Digite o telefone">
+                </p>
+                <p>
+                    <label>Endereço:</label>
+                    <input type="text" id="Endereço" placeholder="Digite o endereço">
+                </p>
+                <p>
+                    <label>CEP:</label>
+                    <input type="text" id="CEP" placeholder="Digite o CEP">
+                </p>
+                <p>
+                    <label>Cidade:</label>
+                    <input type="text" id="Cidade" placeholder="Digite a cidade">
+                </p>
+            </div>
+            <div class="right">
+                <p>
+                    <label>Bairro:</label>
+                    <input type="text" id="Bairro" placeholder="Digite o bairro">
+                </p>
+                <p>
+                    <label>Numero:</label>
+                    <input type="text" id="Numero" placeholder="Digite o número">
+                </p>
+                <p>
+                    <label>Complemento:</label>
+                    <input type="text" id="Complemento" placeholder="Digite o complemento">
+                </p>
+                <p>
+                    <label>UF:</label>
+                    <input type="text" id="UF" placeholder="Digite a UF">
+                </p>
+                <p>
+                    <label>Sexo:</label>
+                    <select id="Sexo">
+                        <option value="">Selecione o sexo </option>
+                        <option value="M">Masculino</option>
+                        <option value="F">Feminino</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="Convenio">Convênio:</label>
+                    <select id="Convenio">
+                        <option value="">Selecione um convênio</option>
+                    </select>
+                </p>
+            </div>
         </div>
-        <div >
-            <label>RG/CIN:</label>
-            <input type="text" id="RG/CIN">
-        </div>
-        <br>
-        <div >
-            <label>CPF:</label>
-            <input type="text" id="CPF">
-        </div>
-        <br>
-        <div>
-            <label>Nome:</label>
-            <input type="text" id="Nome">
-        </div>
-        <br>
-        <div>
-            <label>Telefone:</label>
-            <input type="text" id="Telefone">
-        </div>
-        <br>
-        <div>
-            <label>Endeço:</label>
-            <input type="text" id="Endereço">
-        </div>
-        <div>
-            <label>CEP:</label>
-            <input type="text" id="CEP">
-        </div>
-        <br>
-        <div>
-            <label>Cidade:</label>
-            <input type="text" id="Cidade">
-        </div>
-        <br>
-        <div>
-            <label>Bairro:</label>
-            <input type="text" id="Bairro">
-        </div>
-        <br>
-        <div>
-            <label>Numero:</label>
-            <input type="text" id="Numero">
-        </div>
-        <br>
-        <div>
-            <label>Complemento:</label>
-            <input type="text" id="Complemento">
-        </div>
-        <br>
-        <div>
-            <label>UF:</label>
-            <input type="text" id="UF">
-        </div>
-        <br>
-                <div>
-            <label>Sexo:</label>
-            <select id="Sexo">
-                <option value="">Selecione</option>
-                <option value="M">Masculino</option>
-                <option value="F">Feminino</option>
-            </select>
-        </div>
-        <br>
-        <div>
-            <label for="Convenio">Convênio:</label>
-            <select id="Convenio">
-                <option value="">Selecione um convênio</option>
-            </select>
-        </div>
-        <br>
         <button id="btn_cadastrar_Paciente" type="button">Cadastrar</button>
-        <p id="MensagemPaciente"></p>
-    </form>    
+        <p id="MensagemPaciente"></p>    
+    </main>
+    <footer>
+        <a href="MenuClinica.html" class="btn_voltar_menu">Voltar para o menu</a>
+    </footer>
     <script src="service.js"></script>
 </body>
 </html>
