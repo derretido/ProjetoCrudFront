@@ -421,14 +421,6 @@ function editarAgendamento(linha) {
 
     linha.children[0].innerHTML = `<input type="date" class="edit-data" value="${dataISO}">`;
     linha.children[1].innerHTML = `<input type="time" class="edit-horario" value="${horarioAtual}">`;
-    linha.children[5].innerHTML = `
-        <select class="edit-status">
-            <option value="">Status</option>
-            <option value="1">Confirmado</option>
-            <option value="2">Não Compareceu</option>
-            <option value="3">Pendente</option>
-        </select>
-    `;
     linha.children[6].innerHTML = `
         <button class="btn-salvar">Salvar</button>
         <button class="btn-cancelar">Cancelar</button>
@@ -440,17 +432,16 @@ async function salvarEdicaoAgendamento(linha) {
     const id = linha.dataset.id;
     const novaData = linha.querySelector(".edit-data").value;
     const novoHorario = linha.querySelector(".edit-horario").value;
-    const novoStatus = linha.querySelector(".edit-status").value;
 
-    if (!novaData || !novoHorario || !novoStatus) {
-        alert("Preencha a data, o horário e o status antes de salvar.");
+
+    if (!novaData || !novoHorario) {
+        alert("Preencha a data e o horário antes de salvar.");
         return;
     }
 
     const dados = {
         MED_AGENDAMENTO_DATA: novaData,
-        MED_AGENDAMENTO_HORARIO: `${novoHorario}:00`,
-        ID_MED_AGENDAMENTO_STATUS: parseInt(novoStatus)
+        MED_AGENDAMENTO_HORARIO: `${novoHorario}:00`
     };
 
     try {
@@ -507,7 +498,6 @@ async function carregarMedicosDisponiveis() {
             <td>${md.especialidade}</td>
             <td>${md.sexo}</td>
             <td>
-                <button class="btn-editar" data-id="${md.medicoId}">Editar</button>
                 <button class="btn-excluir" data-id="${md.medicoId}">Excluir</button>
             </td>
         `;
