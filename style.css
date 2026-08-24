@@ -2,10 +2,12 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body{
     background-color: cadetblue;
+    overflow-x: hidden;
 }
 
 /** Tamanho da margem do botão Voltar*/
@@ -58,7 +60,8 @@ header{
     margin-bottom: 10px;
     border-radius: 5px;
     border: 2px solid #ffffff;
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
 }
 
 .left, .right {
@@ -79,8 +82,9 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     gap: 20px;
-    padding: 15 5px;
+    padding: 15px 5px;
     border-radius: 20px;
 }
 
@@ -161,10 +165,12 @@ footer {
     background: white;
     padding: 20px;
     border-radius: 10px;
+    overflow-x: auto;
 }
 
 .tabela {
     width: 100%;
+    min-width: 600px;
     border-collapse: collapse;
 }
 
@@ -197,14 +203,106 @@ footer {
 
 
 /** TUDO SOBRE OS INPUTS DOS DADOS CADASTRAIS */
+
 label{ 
     display: inline-block;
-    width: 110px;
-    text-align: right;
+    width: 100%;
+    text-align: center;
 }
+
 
 button {
     font-family: Arial, Helvetica, sans-serif;
     padding:  10px;
     cursor: pointer;
+}
+
+/** Responsividade para tablets e celulares */
+@media (max-width: 768px) {
+    .layout {
+        margin: 20px 10px;
+    }
+
+    .main {
+        padding: 20px 10px;
+    }
+
+    header {
+        padding: 15px 10px;
+        font-size: 18px;
+    }
+
+    header h1 {
+        font-size: 22px;
+    }
+
+    .cabeçalho {
+        font-size: 28px;
+        padding: 15px 10px;
+    }
+
+    .formulario {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .left, .right {
+        width: 100%;
+        gap: 15px;
+    }
+
+    .formulario input, .formulario select {
+        max-width: 100%;
+    }
+
+    label {
+        display: block;
+        width: 100%;
+        text-align: left;
+        margin-bottom: 5px;
+    }
+
+    .botoes_menu {
+        font-size: 20px;
+        gap: 20px;
+    }
+
+    .container {
+        width: 100%;
+        padding: 10px;
+        margin: 15px auto;
+    }
+
+    footer {
+        gap: 10px;
+        padding: 15px 10px;
+        border-radius: 0;
+    }
+
+    .btn_voltar_menu, .btn_menu {
+        font-size: 14px;
+        padding: 8px 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 18px;
+    }
+
+    .botoes_menu {
+        font-size: 16px;
+        gap: 15px;
+    }
+
+    .formulario input, .formulario select {
+        font-size: 14px;
+    }
+
+    .btn_voltar_menu_direita_cabeçalho {
+        position: static;
+        display: inline-block;
+        margin: 10px;
+    }
 }

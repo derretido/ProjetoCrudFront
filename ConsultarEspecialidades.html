@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/AgendaMedica.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <title>Consulta de Especialidades</title>
+</head>
+<body class="layout">
+    <header>
+        <h1>Consulta de Especialidades</h1>
+    </header>
+    <main class="main">
+        <div class="formulario">
+            <div class="container">
+                <table class="tabela">
+                    <thead>
+                        <tr>
+                            <th>Especialidade</th>
+                            <th></th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelaEspecialidades">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <button class="btn-editar">
+                                    Editar
+                                </button>
+                                <button class="btn-excluir" data-id="${esp.especialidadeId}">
+                                    Excluir
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <a href="especialidade.html" class="btn_voltar_menu">Voltar para cadastro de especialidades</a>
+    </footer>
+    <script src="service.js"></script>
+</body>
+</html>

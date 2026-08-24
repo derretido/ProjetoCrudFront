@@ -87,8 +87,6 @@ if (btnCadastrarMedico) {
     btnCadastrarMedico.addEventListener("click", cadastrarMedico);
 }
 
-
-
 //Carregando os médicos
 async function carregarMedicos() {
     const select = document.getElementById("CRM");
@@ -102,6 +100,36 @@ async function carregarMedicos() {
         select.appendChild(option);
     });
 }
+
+
+
+//Carregando Rg dos pacientes
+async function carregarPacientes() {
+    const select = document.getElementById("RG/CIN");
+    if (!select) return;
+    const resposta = await fetch(`${API}/Paciente`);
+    const pacientes = await resposta.json();
+    pacientes.forEach(paciente => {
+        const option = document.createElement("option");
+        option.value = paciente.iD_PAC_RG_CIN;
+        option.textContent = `${paciente.iD_PAC_RG_CIN} `;
+        select.appendChild(option);
+    });
+}
+
+
+//Carregando quantidade de consultas
+function qtdCosnulta(){
+    const select = document.getElementById("Qtde_maxima");
+    if (!select) return;
+    for (let i = 0; i <= 30; i++) {
+        const option = document.createElement("option");
+        option.value = i;
+        option.textContent = i;
+        select.appendChild(option);
+    }
+}
+
 
 // CADASTRO PACIENTE
 function obterDadosPaciente() {
@@ -134,7 +162,7 @@ async function cadastrarPaciente() {
             body: JSON.stringify(dados)
         });
         if (!resposta.ok)
-            throw new Error("Erro ao cadastrar paciente.");
+        throw new Error("Erro ao cadastrar paciente.");
         const mensagem = document.getElementById("MensagemPaciente");
         mensagem.innerText = "Cadastro do paciente efetuado com sucesso!";
         mensagem.style.color = "green";
@@ -151,8 +179,6 @@ const btnCadastrarPaciente = document.getElementById("btn_cadastrar_Paciente");
 if (btnCadastrarPaciente) {
     btnCadastrarPaciente.addEventListener("click", cadastrarPaciente);
 }
-
-
 
 //Carregando os Convenios
 async function carregarConvenios() {
@@ -185,7 +211,7 @@ function obterDadosEspecialidade() {
 async function cadastrarEspecialidade() {
     const dados = obterDadosEspecialidade();
     console.log(dados);
-    try {
+    if (dados.MED_TAB_ESPECIALIDADE_DESCRICAO) {
         const resposta = await fetch(`${API}/Especialidade`, {
             method: "POST",
             headers: {
@@ -193,15 +219,15 @@ async function cadastrarEspecialidade() {
             },
             body: JSON.stringify(dados)
         });
-        if (!resposta.ok)
+        if (!resposta.ok) {
             throw new Error("Erro ao cadastrar especialidade.");
+        }
         const mensagem = document.getElementById("Mensagem_Especialidade");
         mensagem.innerText = "Especialidade cadastrada com sucesso!";
         mensagem.style.color = "green";
-    } catch (erro) {
-        console.error(erro);
+    } else {
         const mensagem = document.getElementById("Mensagem_Especialidade");
-        mensagem.innerText = "Erro ao cadastrar especialidade.";
+        mensagem.innerText = "Escreva a especialidade antes de cadastrar.";
         mensagem.style.color = "red";
     }
 }
@@ -209,6 +235,30 @@ const btnCadastrarEspecialidade = document.getElementById("btn_cadastrar_especia
 if (btnCadastrarEspecialidade) {
     btnCadastrarEspecialidade.addEventListener("click", cadastrarEspecialidade);
 }
+
+//Carregando todas as especialidades
+async function carregarEspecialidades() {
+    const tabela = document.getElementById("tabelaEspecialidades");
+    if (!tabela) return;
+    const resposta = await fetch(`${API}/Especialidade`);
+    const especialidades = await resposta.json();
+    console.log(especialidades);
+    tabela.innerHTML = "";
+    especialidades.forEach(esp => {
+        const tr = document.createElement("tr");
+        tr.dataset.id = esp.iD_MED_TAB_ESPECIALIDADE;
+        tr.innerHTML = `
+            <td>${esp.meD_TAB_ESPECIALIDADE_DESCRICAO}</td>
+            <td></td>
+            <td>
+                <button class="btn-excluir" data-id="${esp.iD_MED_TAB_ESPECIALIDADE}">Excluir</button>
+            </td>
+        `;
+        console.log(tr);
+        tabela.appendChild(tr);
+    });
+} 
+
 
 
 //Cadastro de Convênio
@@ -285,6 +335,7 @@ function obterDadosAgendaMedica() {
     };
 }
 
+
 async function cadastrarDiasDisponiveis() {
     const dados = obterDadosAgendaMedica();
     console.log(dados);
@@ -321,8 +372,8 @@ async function AgendaPeriodo(){
     const periodos = await resposta.json();
     periodos.forEach(periodo => {
         const option = document.createElement("option");
-        option.value = periodo.ID_MED_TAB_AGENDA_PERIODO;
-        option.textContent = periodo.MED_TAB_AGENDA_PERIODO_DESCRICAO;
+        option.value = periodo.iD_MED_TAB_AGENDA_PERIODO;
+        option.textContent = periodo.meD_TAB_AGENDA_PERIODO_DESCRICAO;
         select.appendChild(option);
     });
 }
@@ -467,6 +518,15 @@ document.addEventListener("click", async (evento) => {
     }
 });
 
+document.addEventListener("click", async (evento) => {
+    if (evento.target.classList.contains("btn-excluir")) {
+        const id = evento.target.dataset.id;
+        const confirmou = confirm("Tem certeza que deseja excluir essa especialidade?");
+        if (!confirmou) return;
+        await excluir(`${API}/Especialidade/${id}`);
+        carregarEspecialidades();
+    }
+});
 
 
 //Lista de Médicos Disponíveis
@@ -520,9 +580,56 @@ async function excluir(url) {
     });
 }
 
+function diaSemana(){
+    const dias = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
+    const select = document.getElementById("DiaSemana");
+    if (!select) return;
+    dias.forEach(dia => {
+        const option = document.createElement("option");
+        option.value = dia;
+        option.textContent = dia;
+        select.appendChild(option);
+    });
+}
 
 
+function tempoConsulta(){
+    const tempo = ["15 min", "30 min", "45 min", "60 min"];
+    const select = document.getElementById("Tempo_consulta");
+    if (!select) return;
+    tempo.forEach(t => {
+        const option = document.createElement("option");
+        option.value = t;
+        option.textContent = t;
+        select.appendChild(option);
+    });
+}
 
+
+function statusAgenda(){
+    const status = [
+        {id: 1, descricao: "Confirmado"},
+        {id: 2, descricao: "Não Compareceu"},
+        {id: 3, descricao: "Pendente"}
+    ];
+    const select = document.getElementById("StatusAgenda");
+    if (!select) return;
+    status.forEach(s => {
+        const option = document.createElement("option");
+        option.value = s.id;
+        option.textContent = s.descricao;
+        select.appendChild(option);
+    });
+    console.log(document.getElementById("Mensagem_AgendaMedica"));
+}
+
+
+carregarEspecialidades()
+carregarPacientes();
+statusAgenda();
+tempoConsulta();
+diaSemana();
+qtdCosnulta();
 carregarEspecialidadesNoSelect();
 carregarStatusNoSelect();
 carregarMedicos();

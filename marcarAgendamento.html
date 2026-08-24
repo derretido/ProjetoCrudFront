@@ -22,14 +22,14 @@
                 </p>
                 <p>
                     <label>RG do Paciente:</label>
-                    <input type="text" id="RG/CIN" placeholder="Digite o RG do paciente">
+                    <select id="RG/CIN">
+                        <option value="">Selecione o paciente</option>
+                    </select>
                 </p>
                 <p>
                     <label>Período:</label>
                     <select id="Periodo">
                         <option value="">Selecione um período</option>
-                        <option value="1">Manhã</option>
-                        <option value="2">Tarde</option>
                     </select>
                 </p>
             </div>
@@ -38,42 +38,24 @@
                     <label>Status:</label>
                     <select id="StatusAgenda">
                         <option value="">Selecione um status</option>
-                        <option value="1">Confirmado</option>
-                        <option value="2">Não Compareceu</option>
-                        <option value="3">Pendente</option>
                     </select>
                 </p>
                 <p>
-                    <label>Horário Final:</label>
-                    <select id="Horario">
-                        <option value="">Selecione um horário</option>
-                        <option value="08:00">08:00</option>
-                        <option value="09:00">09:00</option>
-                        <option value="10:00">10:00</option>
-                        <option value="11:00">11:00</option>
-                        <option value="14:00">14:00</option>
-                        <option value="15:00">15:00</option>
-                        <option value="16:00">16:00</option>
-                        <option value="17:00">17:00</option>
-                    </select>
+                    <label>Horário</label>
+                    <input type="time" id="Horario">
                 </p>
                 <p>
                     <label>Data:</label>
-                    <select id="Data">
-                        <option value="">Selecione uma data</option>
-                        <option value="2024-06-01">01/06/2024</option>
-                        <option value="2024-06-02">02/06/2024</option>
-                        <option value="2024-06-03">03/06/2024</option>
-                        <option value="2024-06-04">04/06/2024</option>
-                    </select>
+                    <input type="date" id="Data">
                 </p>
             </div>
         </div>
             <button id="btn_cadastrarAgendamentos" type="button">Cadastrar</button>
-            <p id="MensagemAgendaMedica"></p>
+            <p id="Mensagem_AgendaMedica"></p>
     </main>
         <footer>
             <a href="MenuClinica.html" class="btn_voltar_menu">Voltar para o menu</a>
+            
         </footer>
     <script src="service.js"></script>
 </body>
