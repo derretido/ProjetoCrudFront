@@ -96,14 +96,14 @@ async function carregarMedicos() {
     medicos.forEach(medico => {
         const option = document.createElement("option");
         option.value = medico.medicoId;
-        option.textContent = `${medico.medicoId} `;
+        option.textContent = `${medico.medicoId} - ${medico.nome} - ${medico.especialidade}`;
         select.appendChild(option);
     });
 }
 
 
 
-//Carregando Rg dos pacientes
+//Carregando os pacientes
 async function carregarPacientes() {
     const select = document.getElementById("RG/CIN");
     if (!select) return;
@@ -112,7 +112,7 @@ async function carregarPacientes() {
     pacientes.forEach(paciente => {
         const option = document.createElement("option");
         option.value = paciente.iD_PAC_RG_CIN;
-        option.textContent = `${paciente.iD_PAC_RG_CIN} `;
+        option.textContent = `${paciente.iD_PAC_RG_CIN}- ${paciente.paC_NOME_COMPLETO}`;
         select.appendChild(option);
     });
 }
@@ -172,7 +172,6 @@ async function cadastrarPaciente() {
         mensagem.innerText = "Erro ao cadastrar paciente.";
         mensagem.style.color = "red";
     }
-
 }
 
 const btnCadastrarPaciente = document.getElementById("btn_cadastrar_Paciente");
@@ -198,7 +197,6 @@ async function carregarConvenios() {
         console.error("Erro ao carregar convênios:", erro);
     }
 }
-
 
 // CADASTRO ESPECIALIDADE
 function obterDadosEspecialidade() {
@@ -258,7 +256,6 @@ async function carregarEspecialidades() {
         tabela.appendChild(tr);
     });
 } 
-
 
 
 //Cadastro de Convênio
@@ -387,7 +384,7 @@ function obterDadosAgendamentos() {
         throw new Error("Selecione um período válido.");
     }
     return {
-        ID_MED_CRM: parseInt(document.getElementById("CRM").value),
+        iD_MED_CRM: parseInt(document.getElementById("CRM").value),
         ID_PAC_RG_CIN: parseInt(document.getElementById("RG/CIN").value),
         ID_MED_TAB_AGENDA_PERIODO: periodoValue,
         ID_MED_AGENDAMENTO_STATUS: parseInt(document.getElementById("StatusAgenda").value),
@@ -620,7 +617,6 @@ function statusAgenda(){
         option.textContent = s.descricao;
         select.appendChild(option);
     });
-    console.log(document.getElementById("Mensagem_AgendaMedica"));
 }
 
 
