@@ -204,7 +204,6 @@ function obterDadosEspecialidade() {
         MED_TAB_ESPECIALIDADE_DESCRICAO: document.getElementById("Especialidade").value,
         MED_TAB_ESPECIALIDADE_OCULTA: false
     };
-
 }
 async function cadastrarEspecialidade() {
     const dados = obterDadosEspecialidade();
@@ -293,8 +292,6 @@ const btnCadastrarConvenio = document.getElementById("btn_cadastrar_convenio");
 if (btnCadastrarConvenio) {
     btnCadastrarConvenio.addEventListener("click", cadastrarConvenio);
 }
-
-
 //carregando status do convênio
 async function carregarStatusConvenio(){
     const select = document.getElementById("ConvenioStatus");
@@ -332,7 +329,22 @@ function obterDadosAgendaMedica() {
     };
 }
 
+//Agenda medica - Carregando Periodos
+async function AgendaPeriodo(){
+    const select = document.getElementById("Periodo");
+    if(!select) return;
+    const resposta = await fetch(`${API}/AgendaPeriodo`);
+    const periodos = await resposta.json();
+    periodos.forEach(periodo => {
+        const option = document.createElement("option");
+        option.value = periodo.iD_MED_TAB_AGENDA_PERIODO;
+        option.textContent = periodo.meD_TAB_AGENDA_PERIODO_DESCRICAO;
+        select.appendChild(option);
+    });
+}
 
+
+// CADASTRO DE DIAS DISPONÍVEIS DO MÉDICO
 async function cadastrarDiasDisponiveis() {
     const dados = obterDadosAgendaMedica();
     console.log(dados);
@@ -361,66 +373,47 @@ if (btn_cadastrarDiasDisponiveis) {
     btn_cadastrarDiasDisponiveis.addEventListener("click", cadastrarDiasDisponiveis);
 }
 
-//Agenda medica - Carregando Periodos
-async function AgendaPeriodo(){
-    const select = document.getElementById("Periodo");
-    if(!select) return;
-    const resposta = await fetch(`${API}/AgendaPeriodo`);
-    const periodos = await resposta.json();
-    periodos.forEach(periodo => {
-        const option = document.createElement("option");
-        option.value = periodo.iD_MED_TAB_AGENDA_PERIODO;
-        option.textContent = periodo.meD_TAB_AGENDA_PERIODO_DESCRICAO;
-        select.appendChild(option);
-    });
-}
 
 // Cadastro de Agendamento
 function obterDadosAgendamentos() {
-    const periodoEl = document.getElementById("Periodo");
-    const periodoValue = parseInt(periodoEl.value);
-
-    if (!periodoEl.value || isNaN(periodoValue)) {
-        throw new Error("Selecione um período válido.");
-    }
     return {
-        iD_MED_CRM: parseInt(document.getElementById("CRM").value),
-        ID_PAC_RG_CIN: parseInt(document.getElementById("RG/CIN").value),
-        ID_MED_TAB_AGENDA_PERIODO: periodoValue,
+        ID_MED_CRM: parseInt(document.getElementById("CRM").value),
+        ID_PAC_RG_CIN: document.getElementById("RG/CIN").value,
+        ID_MED_TAB_AGENDA_PERIODO: parseInt(document.getElementById("Periodo").value),
         ID_MED_AGENDAMENTO_STATUS: parseInt(document.getElementById("StatusAgenda").value),
         MED_AGENDAMENTO_HORARIO: `${document.getElementById("Horario").value}:00`,
-        MED_AGENDAMENTO_DATA: document.getElementById("Data").value,
+        MED_AGENDAMENTO_DATA: document.getElementById("Data").value
     };
 }
-async function cadastrarAgendamentos() {
+async function cadastrarAgendamento() {
     const dados = obterDadosAgendamentos();
-    console.log(dados);
     try {
         const resposta = await fetch(`${API}/Agendamento`, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+            "Content-Type": "application/json"
             },
             body: JSON.stringify(dados)
         });
         if (!resposta.ok)
-            throw new Error("Erro ao cadastrar agenda médica.");
-        const mensagem = document.getElementById("Mensagem_AgendaMedica");
-        mensagem.innerText = "Agenda médica cadastrada com sucesso!";
+            throw new Error("Erro ao cadastrar agendamento");
+        const mensagem = document.getElementById("Mensagem_Agendamento");
+        mensagem.innerHTML = "Agendamento cadastrado com sucesso!";
         mensagem.style.color = "green";
-    } catch (erro) {
+    }  catch (erro){
         console.error(erro);
-        const mensagem = document.getElementById("Mensagem_AgendaMedica");
-        mensagem.innerText = "Erro ao cadastrar agenda médica.";
+        const mensagem = document.getElementById("Mensagem_Agendamento");
+        mensagem.innerHTML = "Erro ao cadastrar agendamento.";
         mensagem.style.color = "red";
     }
 }
 const btn_cadastrarAgendamentos = document.getElementById("btn_cadastrarAgendamentos");
 if (btn_cadastrarAgendamentos) {
-    btn_cadastrarAgendamentos.addEventListener("click", cadastrarAgendamentos);
+    btn_cadastrarAgendamentos.addEventListener("click", cadastrarAgendamento);
 }
 
-//Consulta dos Agendamentos
+
+//Tabela de consulta dos Agendamentos
 async function carregarAgendamentos() {
     const tabela = document.getElementById("tabelaAgendamentos");
     if (!tabela) return;
