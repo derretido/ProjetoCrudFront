@@ -200,7 +200,16 @@ footer {
     background-color: #e74c3c;
     color:white;
 }
+.btn-excluir-Esp {
+    background-color: #e74c3c;
+    color:white;
+}
 
+.btn-cadastrar{
+    padding: 10px 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:20px;
+}
 
 /** TUDO SOBRE OS INPUTS DOS DADOS CADASTRAIS */
 

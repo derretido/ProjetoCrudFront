@@ -249,7 +249,7 @@ async function carregarEspecialidades() {
             <td>${esp.meD_TAB_ESPECIALIDADE_DESCRICAO}</td>
             <td></td>
             <td>
-                <button class="btn-excluir" data-id="${esp.iD_MED_TAB_ESPECIALIDADE}">Excluir</button>
+                <button class="btn-excluir-Esp" data-id="${esp.iD_MED_TAB_ESPECIALIDADE}">Excluir</button>
             </td>
         `;
         console.log(tr);
@@ -516,7 +516,7 @@ document.addEventListener("click", async (evento) => {
 });
 
 document.addEventListener("click", async (evento) => {
-    if (evento.target.classList.contains("btn-excluir")) {
+    if (evento.target.classList.contains("btn-excluir-Esp")) {
         const id = evento.target.dataset.id;
         const confirmou = confirm("Tem certeza que deseja excluir essa especialidade?");
         if (!confirmou) return;
