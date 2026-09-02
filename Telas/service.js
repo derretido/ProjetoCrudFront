@@ -1,24 +1,7 @@
 // URL DA API
-
 const API = "https://projetocrud-production.up.railway.app/api";
 
-// CARREGAR SELECT DE ESPECIALIDADES
-async function carregarEspecialidadesNoSelect() {
-    const select = document.getElementById("Especialidade");
-    if (!select) return; 
-    try {
-        const resposta = await fetch(`${API}/Especialidade`);
-        const especialidades = await resposta.json();
-        especialidades.forEach(esp => {
-            const option = document.createElement("option");
-            option.value = esp.iD_MED_TAB_ESPECIALIDADE;
-            option.textContent = esp.meD_TAB_ESPECIALIDADE_DESCRICAO;
-            select.appendChild(option);
-        });
-    } catch (erro) {
-        console.error("Erro ao carregar especialidades:", erro);
-    }
-}
+
 
 // CARREGAR SELECT DE STATUS (MÉDICO)
 async function carregarStatusNoSelect() {
@@ -101,22 +84,34 @@ async function carregarMedicos() {
     });
 }
 
-
-
-//Carregando os pacientes
-async function carregarPacientes() {
-    const select = document.getElementById("RG/CIN");
-    if (!select) return;
-    const resposta = await fetch(`${API}/Paciente`);
-    const pacientes = await resposta.json();
-    pacientes.forEach(paciente => {
-        const option = document.createElement("option");
-        option.value = paciente.iD_PAC_RG_CIN;
-        option.textContent = `${paciente.iD_PAC_RG_CIN}- ${paciente.paC_NOME_COMPLETO}`;
-        select.appendChild(option);
-    });
+// CADASTRO DE DIAS DISPONÍVEIS DO MÉDICO
+async function cadastrarDiasDisponiveis() {
+    const dados = obterDadosAgendaMedica();
+    console.log(dados);
+    try {
+        const resposta = await fetch(`${API}/Agendar`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(dados)
+        });
+        if (!resposta.ok)
+            throw new Error("Erro ao cadastrar os dias disponíveis do médico.");
+        const mensagem = document.getElementById("Mensagem_DiasDispo");
+        mensagem.innerText = "Dias disponíveis cadastrados com sucesso!";
+        mensagem.style.color = "green";
+    } catch (erro) {
+        console.error(erro);
+        const mensagem = document.getElementById("Mensagem_DiasDispo");
+        mensagem.innerText = "Erro ao cadastrar os dias disponíveis do médico.";
+        mensagem.style.color = "red";
+    }
 }
-
+const btn_cadastrarDiasDisponiveis = document.getElementById("btn_cadastrarDiasDisponiveis");
+if (btn_cadastrarDiasDisponiveis) {
+    btn_cadastrarDiasDisponiveis.addEventListener("click", cadastrarDiasDisponiveis);
+}
 
 //Carregando quantidade de consultas
 function qtdCosnulta(){
@@ -129,6 +124,8 @@ function qtdCosnulta(){
         select.appendChild(option);
     }
 }
+
+
 
 
 // CADASTRO PACIENTE
@@ -149,7 +146,6 @@ function obterDadosPaciente() {
         ID_PAC_TAB_CONVENIO: document.getElementById("Convenio").value
     };
 }
-
 async function cadastrarPaciente() {
     const dados = obterDadosPaciente();
     console.log(dados);
@@ -173,30 +169,25 @@ async function cadastrarPaciente() {
         mensagem.style.color = "red";
     }
 }
-
 const btnCadastrarPaciente = document.getElementById("btn_cadastrar_Paciente");
 if (btnCadastrarPaciente) {
     btnCadastrarPaciente.addEventListener("click", cadastrarPaciente);
 }
-
-//Carregando os Convenios
-async function carregarConvenios() {
-    const select = document.getElementById("Convenio");
-    if (!select) return; 
-    try {
-        const resposta = await fetch(`${API}/Convenio`); 
-        const convenios = await resposta.json();
-        
-        convenios.forEach(conv => {
-            const option = document.createElement("option");
-            option.value = conv.iD_PAC_TAB_CONVENIO;
-            option.textContent = conv.paC_TAB_CONVENIO_DESCRICAO;
-            select.appendChild(option);
-        });
-    } catch (erro) {
-        console.error("Erro ao carregar convênios:", erro);
-    }
+//Carregando os pacientes
+async function carregarPacientes() {
+    const select = document.getElementById("RG/CIN");
+    if (!select) return;
+    const resposta = await fetch(`${API}/Paciente`);
+    const pacientes = await resposta.json();
+    pacientes.forEach(paciente => {
+        const option = document.createElement("option");
+        option.value = paciente.iD_PAC_RG_CIN;
+        option.textContent = `${paciente.iD_PAC_RG_CIN}- ${paciente.paC_NOME_COMPLETO}`;
+        select.appendChild(option);
+    });
 }
+
+
 
 // CADASTRO ESPECIALIDADE
 function obterDadosEspecialidade() {
@@ -233,6 +224,24 @@ if (btnCadastrarEspecialidade) {
     btnCadastrarEspecialidade.addEventListener("click", cadastrarEspecialidade);
 }
 
+// CARREGAR SELECT DE ESPECIALIDADES
+async function carregarEspecialidadesNoSelect() {
+    const select = document.getElementById("Especialidade");
+    if (!select) return; 
+    try {
+        const resposta = await fetch(`${API}/Especialidade`);
+        const especialidades = await resposta.json();
+        especialidades.forEach(esp => {
+            const option = document.createElement("option");
+            option.value = esp.iD_MED_TAB_ESPECIALIDADE;
+            option.textContent = esp.meD_TAB_ESPECIALIDADE_DESCRICAO;
+            select.appendChild(option);
+        });
+    } catch (erro) {
+        console.error("Erro ao carregar especialidades:", erro);
+    }
+}
+
 //Carregando todas as especialidades
 async function carregarEspecialidades() {
     const tabela = document.getElementById("tabelaEspecialidades");
@@ -255,6 +264,7 @@ async function carregarEspecialidades() {
         tabela.appendChild(tr);
     });
 } 
+
 
 
 //Cadastro de Convênio
@@ -292,6 +302,26 @@ const btnCadastrarConvenio = document.getElementById("btn_cadastrar_convenio");
 if (btnCadastrarConvenio) {
     btnCadastrarConvenio.addEventListener("click", cadastrarConvenio);
 }
+
+//Carregando os Convenios
+async function carregarConvenios() {
+    const select = document.getElementById("Convenio");
+    if (!select) return; 
+    try {
+        const resposta = await fetch(`${API}/Convenio`); 
+        const convenios = await resposta.json();
+        
+        convenios.forEach(conv => {
+            const option = document.createElement("option");
+            option.value = conv.iD_PAC_TAB_CONVENIO;
+            option.textContent = conv.paC_TAB_CONVENIO_DESCRICAO;
+            select.appendChild(option);
+        });
+    } catch (erro) {
+        console.error("Erro ao carregar convênios:", erro);
+    }
+}
+
 //carregando status do convênio
 async function carregarStatusConvenio(){
     const select = document.getElementById("ConvenioStatus");
@@ -343,35 +373,6 @@ async function AgendaPeriodo(){
     });
 }
 
-
-// CADASTRO DE DIAS DISPONÍVEIS DO MÉDICO
-async function cadastrarDiasDisponiveis() {
-    const dados = obterDadosAgendaMedica();
-    console.log(dados);
-    try {
-        const resposta = await fetch(`${API}/Agendar`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(dados)
-        });
-        if (!resposta.ok)
-            throw new Error("Erro ao cadastrar os dias disponíveis do médico.");
-        const mensagem = document.getElementById("Mensagem_DiasDispo");
-        mensagem.innerText = "Dias disponíveis cadastrados com sucesso!";
-        mensagem.style.color = "green";
-    } catch (erro) {
-        console.error(erro);
-        const mensagem = document.getElementById("Mensagem_DiasDispo");
-        mensagem.innerText = "Erro ao cadastrar os dias disponíveis do médico.";
-        mensagem.style.color = "red";
-    }
-}
-const btn_cadastrarDiasDisponiveis = document.getElementById("btn_cadastrarDiasDisponiveis");
-if (btn_cadastrarDiasDisponiveis) {
-    btn_cadastrarDiasDisponiveis.addEventListener("click", cadastrarDiasDisponiveis);
-}
 
 
 // Cadastro de Agendamento
@@ -486,19 +487,15 @@ async function salvarEdicaoAgendamento(linha) {
 document.addEventListener("click", async (evento) => {
     const linha = evento.target.closest("tr");
     if (!linha || !linha.closest("#tabelaAgendamentos")) return;
-
     if (evento.target.classList.contains("btn-editar")) {
         editarAgendamento(linha);
     }
-
     if (evento.target.classList.contains("btn-cancelar")) {
         carregarAgendamentos();
     }
-
     if (evento.target.classList.contains("btn-salvar")) {
         await salvarEdicaoAgendamento(linha);
     }
-
     if (evento.target.classList.contains("btn-excluir")) {
         const id = evento.target.dataset.id;
         const confirmou = confirm("Tem certeza que deseja excluir este agendamento?");
@@ -517,8 +514,6 @@ document.addEventListener("click", async (evento) => {
         carregarEspecialidades();
     }
 });
-
-
 //Lista de Médicos Disponíveis
 async function carregarMedicosDisponiveis() {
     const tabelamed = document.getElementById("tabelaMedicos");
@@ -570,6 +565,8 @@ async function excluir(url) {
     });
 }
 
+
+// Funções para preencher os selects de Dia da Semana, Tempo de Consulta e Status da Agenda
 function diaSemana(){
     const dias = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
     const select = document.getElementById("DiaSemana");
@@ -582,7 +579,7 @@ function diaSemana(){
     });
 }
 
-
+// Função para preencher o select de Tempo de Consulta
 function tempoConsulta(){
     const tempo = ["15 min", "30 min", "45 min", "60 min"];
     const select = document.getElementById("Tempo_consulta");
@@ -595,7 +592,7 @@ function tempoConsulta(){
     });
 }
 
-
+// Função para preencher o select de Status da Agenda
 function statusAgenda(){
     const status = [
         {id: 1, descricao: "Confirmado"},
@@ -613,6 +610,8 @@ function statusAgenda(){
 }
 
 
+
+// Inicialização das funções ao carregar a página
 carregarEspecialidades()
 carregarPacientes();
 statusAgenda();

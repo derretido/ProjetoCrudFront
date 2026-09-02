@@ -10,17 +10,17 @@ body{
     overflow-x: hidden;
 }
 
+header{
+    background: white;
+    border-radius: 20px 0px ;
+    padding: 20px;
+    font-family: Arial, Helvetica, serif;
+    font-size: 25px;
+}
+
 /** Tamanho da margem do botão Voltar*/
 .menu {
     margin-bottom: 50px;
-}
-
-header{
-    background: white;
-    border-radius: 20px;
-    padding: 20px 0;
-    font-family: Arial, Helvetica, serif;
-    font-size: 25px;
 }
 
 
@@ -226,7 +226,8 @@ button {
     cursor: pointer;
 }
 
-/** Responsividade para tablets e celulares */
+/** Responsividade para telas */
+
 @media (max-width: 768px) {
     .layout {
         margin: 20px 10px;

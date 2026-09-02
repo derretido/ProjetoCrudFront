@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela de Login</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">  
+    <link rel="stylesheet" href="media-query.css">
+</head>
+<body>
+    <main>
+        <section id="login">
+            <div id="imagem">
+                <!-- Imagem de login -->
+            </div>
+            <div id="formulario">
+                <h1>Login</h1>
+                <p>Seja bem-vindo! Por favor, faça login.</p>
+                <form>
+                    <div class="campo">
+                        <i class="material-icons">groups</i>
+                        <select name="igrupo" id="icargo">
+                            <option value="" disabled selected>Selecione seu grupo</option>
+                            <option value="cargo1">Paciente</option>
+                            <option value="cargo2">Admin</option>
+                        </select>
+                    </div>
+                    <div class="campo">
+                        <i class="material-icons">person</i>
+                        <input TYPE="email" name="ilogin" id="ilogin" placeholder="Digite seu e-mail" autocomplete="email">
+                        <label for="ilogin">Login</label>
+                    </div>
+                    <div class="campo">
+                        <i class="material-icons">vpn_key</i>
+                        <input TYPE="password" name="isenha" id="isenha" placeholder="Digite sua senha" autocomplete="current-password">
+                        <label for="isenha">Senha</label>
+                    </div>
+                    <button id="btn_login"class="btn_Entrar" value="Entrar" onclick="return validacaoLogin() && Login();">Entrar</button>
+                    <p id="cadastrar">Não tem cadastro? Clique no botão abaixo.</p>
+                    <button class="btn_Cadastrar" id="cadastrar" value="Cadastrar">Cadastrar</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>  
+</body>
+</html>
